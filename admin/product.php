@@ -84,4 +84,29 @@ class Product {
         return $fields;
     }
 
+    /**
+	 * Setup product meta data
+	 * Hooked via filter sejoli/product/meta-data, filter 100
+	 * @since  1.0.0
+	 * @param  WP_Post $product
+	 * @param  int     $product_id
+	 * @return WP_Post
+	 */
+    public function set_product_metadata(\WP_Post $product, int $product_id) {
+        
+        $courses = carbon_get_post_meta($product_id, 'learnpress_course');
+
+        if(is_array($courses) && 0 < count($courses)) :
+
+            $product->learnpress = array();
+
+            foreach($courses as $course) :
+                $product->learnpress[] = $course['id'];
+            endforeach;
+
+        endif;
+
+        return $product;
+    }
+
 }
