@@ -116,6 +116,7 @@ class SejoliLP {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/product.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -159,10 +160,14 @@ class SejoliLP {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new SejoliLP\Admin( $this->get_plugin_name(), $this->get_version() );
+		$admin = new SejoliLP\Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_scripts' );
+
+		$product = new SejoliLP\Admin\Product( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_filter( 'sejoli/product/fields', $product, 'set_product_fields', 11);
 
 	}
 
@@ -175,10 +180,10 @@ class SejoliLP {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new SejoliLP\Front( $this->get_plugin_name(), $this->get_version() );
+		$public = new SejoliLP\Front( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $public, 'enqueue_scripts' );
 
 	}
 
