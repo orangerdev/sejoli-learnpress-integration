@@ -9,8 +9,8 @@
  * @link       https://ridwan-arifandi.com
  * @since      1.0.0
  *
- * @package    Sejolp
- * @subpackage Sejolp/includes
+ * @package    SejoliLP
+ * @subpackage SejoliLP/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Sejolp
- * @subpackage Sejolp/includes
+ * @package    SejoliLP
+ * @subpackage SejoliLP/includes
  * @author     Ridwan Arifandi <orangerdigiart@gmail.com>
  */
-class Sejolp {
+class SejoliLP {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Sejolp {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Sejolp_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      SejoliLP_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -78,6 +78,7 @@ class Sejolp {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->register_cli();
 
 	}
 
@@ -86,10 +87,10 @@ class Sejolp {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Sejolp_Loader. Orchestrates the hooks of the plugin.
-	 * - Sejolp_i18n. Defines internationalization functionality.
-	 * - Sejolp_Admin. Defines all hooks for the admin area.
-	 * - Sejolp_Public. Defines all hooks for the public side of the site.
+	 * - SejoliLP_Loader. Orchestrates the hooks of the plugin.
+	 * - SejoliLP_i18n. Defines internationalization functionality.
+	 * - SejoliLP_Admin. Defines all hooks for the admin area.
+	 * - SejoliLP_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -122,14 +123,20 @@ class Sejolp {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/public.php';
 
-		$this->loader = new Sejolp_Loader();
+		/**
+		 * The class responsible for defining CLI command and function
+		 * side of the site.
+		 */
+		 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'cli/simulation.php';
+
+		$this->loader = new SejoliLP_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Sejolp_i18n class in order to set the domain and to register the hook
+	 * Uses the SejoliLP_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +144,7 @@ class Sejolp {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Sejolp_i18n();
+		$plugin_i18n = new SejoliLP_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,7 +159,7 @@ class Sejolp {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Sejolp\Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new SejoliLP\Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -168,11 +175,27 @@ class Sejolp {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Sejolp\Front( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new SejoliLP\Front( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+	}
+
+	/**
+	 * Register CLI commands
+	 * @since  1.0.0
+	 * @return void
+	 */
+	private function register_cli() {
+
+		if ( !class_exists( 'WP_CLI' ) ) :
+			return;
+		endif;
+
+		$simulation       = new SejoliLP\CLI\Simulation();
+
+		WP_CLI::add_command('sejolilp simulation'	, $simulation);
 	}
 
 	/**
@@ -199,7 +222,7 @@ class Sejolp {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Sejolp_Loader    Orchestrates the hooks of the plugin.
+	 * @return    SejoliLP_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

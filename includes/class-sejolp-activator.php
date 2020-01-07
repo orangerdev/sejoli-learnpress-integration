@@ -6,8 +6,8 @@
  * @link       https://ridwan-arifandi.com
  * @since      1.0.0
  *
- * @package    Sejolp
- * @subpackage Sejolp/includes
+ * @package    SejoliLP
+ * @subpackage SejoliLP/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Sejolp
- * @subpackage Sejolp/includes
+ * @package    SejoliLP
+ * @subpackage SejoliLP/includes
  * @author     Ridwan Arifandi <orangerdigiart@gmail.com>
  */
-class Sejolp_Activator {
+class SejoliLP_Activator {
 
 	/**
 	 * Short Description. (use period)

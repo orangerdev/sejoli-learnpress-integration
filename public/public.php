@@ -1,5 +1,5 @@
 <?php
-namespace Sejolp;
+namespace SejoliLP;
 
 /**
  * The public-facing functionality of the plugin.
@@ -7,8 +7,8 @@ namespace Sejolp;
  * @link       https://ridwan-arifandi.com
  * @since      1.0.0
  *
- * @package    Sejolp
- * @subpackage Sejolp/public
+ * @package    SejoliLP
+ * @subpackage SejoliLP/public
  */
 
 /**
@@ -17,8 +17,8 @@ namespace Sejolp;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Sejolp
- * @subpackage Sejolp/public
+ * @package    SejoliLP
+ * @subpackage SejoliLP/public
  * @author     Ridwan Arifandi <orangerdigiart@gmail.com>
  */
 class Front {
@@ -66,10 +66,10 @@ class Front {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Sejolp_Loader as all of the hooks are defined
+		 * defined in SejoliLP_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Sejolp_Loader will then create the relationship
+		 * The SejoliLP_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -89,10 +89,10 @@ class Front {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Sejolp_Loader as all of the hooks are defined
+		 * defined in SejoliLP_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Sejolp_Loader will then create the relationship
+		 * The SejoliLP_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

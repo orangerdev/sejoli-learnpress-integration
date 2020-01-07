@@ -8,8 +8,8 @@
  * @link       https://ridwan-arifandi.com
  * @since      1.0.0
  *
- * @package    Sejolp
- * @subpackage Sejolp/admin/partials
+ * @package    SejoliLP
+ * @subpackage SejoliLP/admin/partials
  */
 ?>
 

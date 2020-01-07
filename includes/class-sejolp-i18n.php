@@ -9,8 +9,8 @@
  * @link       https://ridwan-arifandi.com
  * @since      1.0.0
  *
- * @package    Sejolp
- * @subpackage Sejolp/includes
+ * @package    SejoliLP
+ * @subpackage SejoliLP/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Sejolp
- * @subpackage Sejolp/includes
+ * @package    SejoliLP
+ * @subpackage SejoliLP/includes
  * @author     Ridwan Arifandi <orangerdigiart@gmail.com>
  */
-class Sejolp_i18n {
+class SejoliLP_i18n {
 
 
 	/**

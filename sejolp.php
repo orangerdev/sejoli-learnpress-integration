@@ -10,7 +10,7 @@
  *
  * @link              https://ridwan-arifandi.com
  * @since             1.0.0
- * @package           Sejolp
+ * @package           SejoliLP
  *
  * @wordpress-plugin
  * Plugin Name:       Sejoli - LearnPress
@@ -65,7 +65,7 @@ define( 'SEJOLP_VERSION', '1.0.0' );
  */
 function activate_sejolp() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sejolp-activator.php';
-	Sejolp_Activator::activate();
+	SejoliLP_Activator::activate();
 }
 
 /**
@@ -74,7 +74,7 @@ function activate_sejolp() {
  */
 function deactivate_sejolp() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sejolp-deactivator.php';
-	Sejolp_Deactivator::deactivate();
+	SejoliLP_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_sejolp' );
@@ -97,7 +97,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-sejolp.php';
  */
 function run_sejolp() {
 
-	$plugin = new Sejolp();
+	$plugin = new SejoliLP();
 	$plugin->run();
 
 }

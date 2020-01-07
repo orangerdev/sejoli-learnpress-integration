@@ -22,7 +22,7 @@
  * @link       https://ridwan-arifandi.com
  * @since      1.0.0
  *
- * @package    Sejolp
+ * @package    SejoliLP
  */
 
 // If uninstall not called from WordPress, then exit.

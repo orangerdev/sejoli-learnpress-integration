@@ -6,8 +6,8 @@
  * @link       https://ridwan-arifandi.com
  * @since      1.0.0
  *
- * @package    Sejolp
- * @subpackage Sejolp/includes
+ * @package    SejoliLP
+ * @subpackage SejoliLP/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Sejolp
- * @subpackage Sejolp/includes
+ * @package    SejoliLP
+ * @subpackage SejoliLP/includes
  * @author     Ridwan Arifandi <orangerdigiart@gmail.com>
  */
-class Sejolp_Loader {
+class SejoliLP_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
