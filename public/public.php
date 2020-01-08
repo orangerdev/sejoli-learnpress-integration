@@ -62,19 +62,9 @@ class Front {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in SejoliLP_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The SejoliLP_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sejolp-public.css', array(), $this->version, 'all' );
+		if(is_singular(LP_COURSE_CPT)) :
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sejolp-public.css', array(), $this->version, 'all' );
+		endif;
 
 	}
 
@@ -85,20 +75,27 @@ class Front {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in SejoliLP_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The SejoliLP_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sejolp-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
+	/**
+	 * Redirect if current page is learnpress page and user is not logged in
+	 * Hooked via action template_redirect, priority 10
+	 * @since 	1.0.0
+	 * @return 	void
+	 */
+	public function redirect_for_regular_pages() {
+
+		$member_home_url = sejoli_get_endpoint_url();
+
+		if(
+			is_archive(LP_COURSE_CPT) ||
+			is_category('course_category')
+		) :
+
+			wp_redirect($member_home_url);
+			exit;
+		endif;
+	}
 }
