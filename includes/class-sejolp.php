@@ -195,8 +195,8 @@ class SejoliLP {
 
 		$public = new SejoliLP\Front( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', 	$public, 	'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', 	$public, 	'enqueue_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', 	$public, 	'enqueue_styles' 	, 1000);
+		$this->loader->add_action( 'wp_enqueue_scripts', 	$public, 	'enqueue_scripts' 	, 1000);
 		$this->loader->add_action( 'template_redirect',		$public,	'redirect_for_regular_pages', 10);
 	}
 

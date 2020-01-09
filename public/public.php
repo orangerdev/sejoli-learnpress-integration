@@ -62,8 +62,12 @@ class Front {
 	 */
 	public function enqueue_styles() {
 
-		if(is_singular(LP_COURSE_CPT)) :
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sejolp-public.css', array(), $this->version, 'all' );
+		global $post;
+
+		$page_template = get_post_meta($post->ID, '_wp_page_template', true);
+
+		if(is_singular(LP_COURSE_CPT) && 'sejoli-member-page.php' === $page_template) :
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sejolilp-public.css', array(), $this->version, 'all' );
 		endif;
 
 	}
@@ -75,7 +79,7 @@ class Front {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sejolp-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sejolilp-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

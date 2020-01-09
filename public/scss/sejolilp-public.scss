@@ -1,0 +1,113 @@
+$color-red: #dd88ae;
+$color-green: #009688;
+$color-blue: #00adff;
+
+
+.learn-press-breadcrumb {
+    background-color: #ddd;
+    padding: 12px 20px;
+}
+
+.learn-press-course-results-progress {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+
+    > div {
+        float: none!important;
+        width: 45%!important;
+        margin: 0 0 1.5rem 0!important;
+
+        &.items-progress span.number,
+        &.course-progress .lp-course-status {
+            margin-bottom: .5rem;
+            display: block;
+        }
+
+        &.course-progress .lp-course-status .lp-label {
+            background-color: black;
+        }
+    }
+
+    &:after {
+        display: none;
+    }
+}
+
+#learn-press-course {
+
+    .course-meta {
+        span {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 8px;
+            color: white;
+            background-color: $color-green;
+        }
+    }
+
+    .course-remaining-time {
+        margin-bottom: 1.5rem;
+    }
+
+    .section {
+
+        .section-header {
+            cursor: pointer;
+            padding-left: .75rem;
+            padding-right: .75rem;
+            background-color: lighten($color-blue, 40%);
+        }
+
+        .section-content {
+            .course-item {
+                padding-left: .75rem;
+                padding-right: .75rem;
+            }
+        }
+    }
+}
+
+.lp-course-buttons,
+.learn-press-form {
+    button[type=submit] {
+        background-color: $color-blue;
+        border: none;
+        color: white;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        border-radius: 4px;
+        text-transform: uppercase;
+    }
+}
+
+.lp-course-buttons {
+    .form-button {
+        width: 100%;
+    }
+
+    button[type=submit] {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .learn-press-course-results-progress {
+        display: block;
+        > div {
+            width: 100%!important;
+        }
+    }
+
+    #learn-press-course .section .section-header {
+        display: block;
+        > div {
+            display: block;
+        }
+
+        .section-meta {
+            padding: 12px 0;
+        }
+    }
+}
