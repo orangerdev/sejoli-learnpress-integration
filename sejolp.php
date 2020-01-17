@@ -58,6 +58,8 @@ function sejolp_check_sejoli() {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'SEJOLP_VERSION', '1.0.0' );
+define( 'SEJOLP_DIR',	 plugin_dir_path(__FILE__));
+define( 'SEJOLP_URL',	 plugin_dir_url(__FILE__));
 
 /**
  * The code that runs during plugin activation.
