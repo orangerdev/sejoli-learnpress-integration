@@ -130,6 +130,15 @@ class Order {
                 $learnpress_order->update_status('completed');
                 $learnpress_order->save();
             endif;
+
+		elseif(isset($order_data['meta_data']['learnpress_order'])) :
+
+			$learnpress_order_id = intval($order_data['meta_data']['learnpress_order']);
+			
+			if ( $learnpress_order = learn_press_get_order( $learnpress_order_id ) ) :
+                $learnpress_order->update_status('completed');
+                $learnpress_order->save();
+            endif;
         endif;
     }
 
