@@ -110,4 +110,22 @@ class Member {
         return $menu;
     }
 
+    /**
+     * Set template file for learnpress template
+     * Hooked via sejoli/template-file, priority 999
+     * @since   1.0.0
+     * @param   string  $file
+     * @param   string  $view_request
+     */
+    public function set_template_file(string $file, string $view_request) {
+
+        if('course-list' === $view_request) :
+
+            return SEJOLP_DIR . 'template/course-list.php';
+
+        endif;
+
+        return $file;
+    }
+
 }
