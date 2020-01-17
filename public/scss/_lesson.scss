@@ -1,0 +1,129 @@
+//
+// LearnPress Lesson
+//
+$course-header-height: 45px;
+
+body.course-item-popup .content-item-summary { margin-bottom: $margin-bottom;}
+
+#course-item-content-header {
+
+    height: $course-header-height;
+    line-height: $course-header-height;
+
+    .course-item-search {
+        padding: 7.5px;
+    }
+    .course-title { line-height: $course-header-height; }
+    .toggle-content-item {
+        width: $course-header-height;
+        height: $course-header-height;
+
+        &::before {
+            line-height: $course-header-height;
+        }
+    }
+
+    .lp-form {
+
+        height: $course-header-height;
+        line-height: $course-header-height;
+        button.lp-button {
+            @include main-button;
+            font-size: 12px;
+            height: $course-header-height * 0.67;
+            line-height: $course-header-height * 0.67;
+        }
+    }
+}
+
+body.course-item-popup.wpadminbar #learn-press-course-curriculum,
+body.course-item-popup.wpadminbar #learn-press-content-item {
+    top : calc(92px - 15px);
+}
+
+.lp-course-buttons,
+.learn-press-form {
+    button[type=submit],
+    button.button-complete-item {
+        @include main-button;
+    }
+}
+
+.lp-course-buttons,
+.learn-press-form {
+    display: block;
+    .form-button {
+        width: 100%;
+    }
+
+    button[type=submit] {
+        width: 100%;
+    }
+}
+
+.content-item-wrap {
+
+    .review-heading {
+        font-size: 24px;
+    }
+
+    .course-item-nav {
+        justify-content:space-between;
+        > div {
+            padding: 10px;
+            background-color: $color-light-grey;
+            max-width: 300px;
+            border-radius: $border-radius;
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .learn-press-course-results-progress {
+        display: block;
+        > div {
+            width: 100%!important;
+        }
+    }
+
+    #learn-press-course .section .section-header {
+        display: block;
+        > div {
+            display: block;
+        }
+
+        .section-meta {
+            padding: 12px 0;
+        }
+    }
+
+    body.course-item-popup.wpadminbar #learn-press-course-curriculum,
+    body.course-item-popup.wpadminbar #learn-press-content-item {
+        top : 92px;
+    }
+
+    .content-item-wrap {
+        .course-item-nav {
+            display: block;
+            > div {
+                flex: none;
+                width: calc(100% - 20px);
+                max-width: calc(100% - 20px);
+                margin-bottom: $margin-bottom;
+            }
+        }
+
+        .content-item-summary .lp-quiz-buttons form {
+            display: block;
+            margin-bottom: $margin-bottom;
+            button {
+                display: block;
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+}

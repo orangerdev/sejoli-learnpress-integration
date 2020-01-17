@@ -66,10 +66,14 @@ class Front {
 
 		$page_template = get_post_meta($post->ID, '_wp_page_template', true);
 
-		if(is_singular(LP_COURSE_CPT) && 'sejoli-member-page.php' === $page_template) :
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sejolilp-public.css', array(), $this->version, 'all' );
-		endif;
+		if(
+			( learn_press_is_course() && 'sejoli-member-page.php' === $page_template ) ||
+			learn_press_is_lesson() || learn_press_is_quiz()
+		):
 
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sejolilp-public.css', array(), $this->version, 'all' );
+
+		endif;
 	}
 
 	/**

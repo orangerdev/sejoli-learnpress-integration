@@ -1,6 +1,26 @@
 $color-red: #dd88ae;
 $color-green: #009688;
 $color-blue: #00adff;
+$color-light-grey: #F5F5F5;
+$color-soft-black: #333333;
+$border-radius: 4px;
+$margin-bottom: 20px;
+
+// BUTTONS
+@mixin general-button {
+    border: none;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    border-radius: $border-radius;
+    line-height: 2.5rem;
+    text-transform: uppercase;
+}
+
+@mixin main-button {
+    @include general-button;
+    background-color: $color-blue;
+    color: white;
+}
 
 
 .learn-press-breadcrumb {
@@ -31,6 +51,14 @@ $color-blue: #00adff;
 
     &:after {
         display: none;
+    }
+}
+
+.content-item-wrap {
+    .content-item-summary {
+        p {
+            font-size: 16px;
+        }
     }
 }
 
@@ -68,46 +96,15 @@ $color-blue: #00adff;
     }
 }
 
-.lp-course-buttons,
-.learn-press-form {
-    button[type=submit] {
-        background-color: $color-blue;
-        border: none;
-        color: white;
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-        border-radius: 4px;
-        text-transform: uppercase;
-    }
-}
-
-.lp-course-buttons {
-    .form-button {
-        width: 100%;
-    }
-
-    button[type=submit] {
-        width: 100%;
-    }
-}
-
 @media screen and (max-width: 480px) {
-
-    .learn-press-course-results-progress {
-        display: block;
-        > div {
-            width: 100%!important;
-        }
-    }
-
-    #learn-press-course .section .section-header {
-        display: block;
-        > div {
-            display: block;
-        }
-
-        .section-meta {
-            padding: 12px 0;
+    .course-curriculum  ul.curriculum-sections .section-content .course-item a.section-item-link {
+        display: flex;
+        flex-wrap: wrap;
+        > * { display: block; }
+        .course-item-meta {
         }
     }
 }
+
+@import 'lesson';
+@import 'quiz';

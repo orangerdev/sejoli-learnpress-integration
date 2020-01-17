@@ -1,0 +1,76 @@
+//
+// LearnPress Quiz
+//
+
+.content-item-summary {
+
+    .content-question-summary,
+    .quiz-question-desc {
+        margin-bottom: $margin-bottom;
+    }
+
+    .quiz-result {
+
+        &.failed .result-achieved {
+            background-color: $color-red;
+        }
+
+        &.passed .result-achieved {
+            background-color: $color-blue;
+        }
+
+        .result-grade {
+
+            margin-bottom: $margin-bottom;
+
+            .result-achieved {
+                color: white;
+                border: none;
+                line-height: 100%;
+                padding: 10px;
+                border-radius: $border-radius;
+            }
+
+            .result-require {
+                padding: 10px;
+                font-size: 18px;
+                line-height: 150%;
+            }
+
+            .result-message {
+                font-size: 16px;
+                strong { text-transform: uppercase; }
+            }
+        }
+
+        .result-statistic {
+            background-color: $color-light-grey;
+            border-radius: $border-radius;
+
+            .result-statistic-field {
+                padding: 8px;
+                border-bottom: 1px solid white;
+            }
+        }
+    }
+
+    ul.answer-options {
+
+        .answer-option .option-title .option-title-content {
+            font-size: 16px;
+            color: $color-soft-black;
+        }
+    }
+
+    .lp-quiz-buttons {
+        button[type=submit] {
+            @include main-button;
+        }
+    }
+
+    .question-numbers {
+        li a {
+            border: none;
+        }
+    }
+}
