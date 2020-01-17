@@ -124,6 +124,7 @@ class SejoliLP {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/member.php';
 
 		/**
 		 * The class responsible for defining CLI command and function
@@ -198,6 +199,11 @@ class SejoliLP {
 		$this->loader->add_action( 'wp_enqueue_scripts', 	$public, 	'enqueue_styles' 	, 1000);
 		$this->loader->add_action( 'wp_enqueue_scripts', 	$public, 	'enqueue_scripts' 	, 1000);
 		$this->loader->add_action( 'template_redirect',		$public,	'redirect_for_regular_pages', 10);
+
+		$member 	= new SejoliLP\Front\Member( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_filter( 'sejoli/member-area/menu',			$member, 'add_course_menu', 999);
+		$this->loader->add_filter( 'sejoli/member-area/backend/menu',	$member, 'add_course_menu_in_backend', 999);
 	}
 
 	/**
