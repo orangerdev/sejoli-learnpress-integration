@@ -126,6 +126,12 @@ class SejoliLP {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/public.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/member.php';
 
+
+		/**
+		 * Routine functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'functions/user.php';
+
 		/**
 		 * The class responsible for defining CLI command and function
 		 * side of the site.
@@ -204,6 +210,7 @@ class SejoliLP {
 
 		$this->loader->add_filter( 'sejoli/member-area/menu',			$member, 'add_course_menu', 999);
 		$this->loader->add_filter( 'sejoli/member-area/backend/menu',	$member, 'add_course_menu_in_backend', 999);
+		$this->loader->add_filter( 'sejoli/template-file',				$member, 'set_template_file', 999, 2);
 	}
 
 	/**
