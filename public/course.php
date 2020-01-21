@@ -45,8 +45,8 @@ class Course {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param   string    $plugin_name       The name of the plugin.
+	 * @param   string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -57,11 +57,29 @@ class Course {
 
     /**
      * Remove default learnpress hooks that related to checkout actions
+     * Hooked via plugins_loaded, priority 1
      * @since   1.0.0
      * @return  void
      */
     public function remove_unneeded_hooks() {
+
         remove_action( 'learn-press/content-landing-summary', 'learn_press_course_price', 25 );
         remove_action( 'learn-press/content-landing-summary', 'learn_press_course_buttons', 30 );
+
+    }
+
+    /**
+     * Display sejoli product button
+     * Hooked via learn-press/content-landing-summary, priority 25
+     * @since   1.0.0
+     * @return [type] [description]
+     */
+    public function display_product_button() {
+        global $post;
+
+        $products = sejolilp_get_products($post->ID);
+        $file     = (false === $products) ? 'template/no-product-related.php' : 'template/products-related.php';
+
+        require SEJOLP_DIR . $file;
     }
 }

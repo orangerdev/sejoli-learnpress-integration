@@ -67,8 +67,7 @@ class Front {
 		$page_template = get_post_meta($post->ID, '_wp_page_template', true);
 
 		if(
-			( learn_press_is_course() && 'sejoli-member-page.php' === $page_template ) ||
-			learn_press_is_lesson() || learn_press_is_quiz()
+			learn_press_is_course() || learn_press_is_lesson() || learn_press_is_quiz()
 		):
 
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sejolilp-public.css', array(), $this->version, 'all' );
@@ -95,15 +94,15 @@ class Front {
 	 */
 	public function redirect_for_regular_pages() {
 
-		$member_home_url = sejoli_get_endpoint_url();
-
-		if(
-			is_archive(LP_COURSE_CPT) ||
-			is_category('course_category')
-		) :
-
-			wp_redirect($member_home_url);
-			exit;
-		endif;
+		// $member_home_url = sejoli_get_endpoint_url();
+		//
+		// if(
+		// 	is_archive(LP_COURSE_CPT) ||
+		// 	is_category('course_category')
+		// ) :
+		//
+		// 	wp_redirect($member_home_url);
+		// 	exit;
+		// endif;
 	}
 }
