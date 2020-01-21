@@ -125,6 +125,7 @@ class SejoliLP {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/public.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/member.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/course.php';
 
 
 		/**
@@ -211,6 +212,8 @@ class SejoliLP {
 		$this->loader->add_filter( 'sejoli/member-area/menu',			$member, 'add_course_menu', 999);
 		$this->loader->add_filter( 'sejoli/member-area/backend/menu',	$member, 'add_course_menu_in_backend', 999);
 		$this->loader->add_filter( 'sejoli/template-file',				$member, 'set_template_file', 999, 2);
+
+		$course = new SejoliLP\Front\Course( $this->get_plugin_name(), $this->get_version() );
 	}
 
 	/**
