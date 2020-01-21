@@ -132,6 +132,7 @@ class SejoliLP {
 		 * Routine functions
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'functions/user.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'functions/course.php';
 
 		/**
 		 * The class responsible for defining CLI command and function
