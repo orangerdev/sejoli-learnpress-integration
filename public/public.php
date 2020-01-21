@@ -67,7 +67,9 @@ class Front {
 		$page_template = get_post_meta($post->ID, '_wp_page_template', true);
 
 		if(
-			learn_press_is_course() || learn_press_is_lesson() || learn_press_is_quiz()
+			learn_press_is_course() || learn_press_is_lesson() || learn_press_is_quiz() ||
+			is_archive(LP_COURSE_CPT) ||
+			is_category('course_category')
 		):
 
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sejolilp-public.css', array(), $this->version, 'all' );

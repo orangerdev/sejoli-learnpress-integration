@@ -72,6 +72,20 @@
     display: block;
   }
 }
+.lp-archive-courses {
+  max-width: 90% !important;
+  width: 910px !important;
+}
+.lp-archive-courses ul.learn-press-courses {
+  margin: 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.lp-archive-courses ul.learn-press-courses a.course-permalink {
+  display: block;
+}
+
 .sejoli-product-related ul {
   margin: 0;
   padding: 0;

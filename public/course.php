@@ -65,6 +65,8 @@ class Course {
 
         remove_action( 'learn-press/content-landing-summary', 'learn_press_course_price', 25 );
         remove_action( 'learn-press/content-landing-summary', 'learn_press_course_buttons', 30 );
+        remove_action( 'learn-press/after-courses-loop-item', 'learn_press_courses_loop_item_price', 20 );
+        remove_action( 'learn-press/after-courses-loop-item', 'learn_press_course_loop_item_buttons', 35 );
 
     }
 
