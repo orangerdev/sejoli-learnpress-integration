@@ -54,4 +54,14 @@ class Course {
 		$this->version = $version;
 
 	}
+
+    /**
+     * Remove default learnpress hooks that related to checkout actions
+     * @since   1.0.0
+     * @return  void
+     */
+    public function remove_unneeded_hooks() {
+        remove_action( 'learn-press/content-landing-summary', 'learn_press_course_price', 25 );
+        remove_action( 'learn-press/content-landing-summary', 'learn_press_course_buttons', 30 );
+    }
 }
