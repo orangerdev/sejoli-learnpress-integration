@@ -116,8 +116,10 @@ class SejoliLP {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/admin.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/product.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/order.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/product.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/teacher.php';
+
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -192,6 +194,11 @@ class SejoliLP {
 		$this->loader->add_filter( 'sejoli/order/set-status/in-progress',		$order, 'cancel_learnpress_order',	200);
 		$this->loader->add_filter( 'sejoli/order/set-status/shipped',			$order, 'cancel_learnpress_order',	200);
 
+		$teacher = new SejoliLP\Admin\Teacher( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'init',		$teacher, 'modify_capability', 999);
+
+
 	}
 
 	/**
@@ -222,7 +229,7 @@ class SejoliLP {
 		$this->loader->add_action( 'learn-press/course-buttons',			$course, 'display_purchase_button', 10);
 
 		$teacher = new SejoliLP\Front\Teacher( $this->get_plugin_name(), $this->get_version() );
-		
+
 		$this->loader->add_filter( 'learn_press_become_teacher_form_fields', $teacher, 'modify_register_fields', 1);
 	}
 
