@@ -66,7 +66,10 @@ class Course {
         remove_action( 'learn-press/content-landing-summary', 'learn_press_course_price', 25 );
         remove_action( 'learn-press/content-landing-summary', 'learn_press_course_buttons', 30 );
         remove_action( 'learn-press/after-courses-loop-item', 'learn_press_courses_loop_item_price', 20 );
-        remove_action( 'learn-press/after-courses-loop-item', 'learn_press_course_loop_item_buttons', 35 );
+		remove_action( 'learn-press/after-courses-loop-item', 'learn_press_courses_loop_item_instructor', 25 );
+        remove_action( 'learn-press/course-buttons', 'learn_press_course_purchase_button', 10 );
+        remove_action( 'learn-press/course-buttons', 'learn_press_course_enroll_button', 15 );
+        remove_action( 'learn-press/course-buttons', 'learn_press_course_retake_button', 20 );
 
     }
 
@@ -74,7 +77,7 @@ class Course {
      * Display sejoli product button
      * Hooked via learn-press/content-landing-summary, priority 25
      * @since   1.0.0
-     * @return [type] [description]
+     * @return  void
      */
     public function display_product_button() {
         global $post;
@@ -83,5 +86,15 @@ class Course {
         $file     = (false === $products) ? 'template/no-product-related.php' : 'template/products-related.php';
 
         require SEJOLP_DIR . $file;
+    }
+
+    /**
+     * Display purchase sejoli product button
+     * Hooked via action learn-press/course-buttons, priority 10
+     * @since   1.0.0
+     * @return  void
+     */
+    public function display_purchase_button() {
+
     }
 }
