@@ -131,7 +131,7 @@
   color: white;
   text-decoration: none;
   border-bottom: none;
-  padding: 0 8px;
+  padding: 8px;
   font-size: 14px;
   line-height: 32px;
   font-weight: bold;
@@ -145,15 +145,20 @@
 }
 
 .lp-single-course {
+  max-width: 960px !important;
+}
+
+.sejoli-memberarea-conten .lp-single-course {
   width: 100% !important;
   max-width: 100% !important;
 }
-.lp-single-course .sejoli-product-related ul {
+
+.sejoli-product-related ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.lp-single-course .sejoli-product-related ul li a {
+.sejoli-product-related ul li a {
   display: block;
   padding: 1rem;
   background-color: white;
