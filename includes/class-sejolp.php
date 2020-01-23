@@ -218,6 +218,7 @@ class SejoliLP {
 
 		$this->loader->add_action( 'plugins_loaded',						$course, 'remove_unneeded_hooks', 1);
 		$this->loader->add_action( 'learn-press/content-landing-summary',	$course, 'display_product_button', 25);
+		$this->loader->add_action( 'learn-press/course-buttons',			$course, 'display_purchase_button', 10);
 	}
 
 	/**
