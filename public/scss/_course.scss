@@ -1,13 +1,17 @@
-.sejoli-product-related {
-    ul {
-        margin:0;
-        padding: 0;
-        list-style: none;
-        li a {
-            display: block;
-            padding: 1rem ;
-            background-color: white;
-            border-bottom: 2px solid $color-light-grey;
+.lp-single-course {
+    width: 100%!important;
+    max-width: 100%!important;
+    .sejoli-product-related {
+        ul {
+            margin:0;
+            padding: 0;
+            list-style: none;
+            li a {
+                display: block;
+                padding: 1rem ;
+                background-color: white;
+                border-bottom: 2px solid $color-light-grey;
+            }
         }
     }
 }
