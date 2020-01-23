@@ -222,6 +222,8 @@ class SejoliLP {
 		$this->loader->add_action( 'learn-press/course-buttons',			$course, 'display_purchase_button', 10);
 
 		$teacher = new SejoliLP\Front\Teacher( $this->get_plugin_name(), $this->get_version() );
+		
+		$this->loader->add_filter( 'learn_press_become_teacher_form_fields', $teacher, 'modify_register_fields', 1);
 	}
 
 	/**

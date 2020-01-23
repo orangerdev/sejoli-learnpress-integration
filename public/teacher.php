@@ -55,4 +55,20 @@ class Teacher {
 
 	}
 
+    /**
+     * Modify teacher registration fields
+     * Hooked via filter learn_press_become_teacher_form_fields, priority 1
+     * @since   1.0.0
+     * @param   array  $fields  Array of registration fields
+     * @return  array   Modified registration fields
+     */
+    public function modify_register_fields(array $fields) {
+
+        $current_user = sejolisa_get_user(get_current_user_id());
+
+        $fields['bat_phone']['saved'] = $current_user->meta->phone;
+
+        return $fields;
+    }
+
 }
