@@ -123,9 +123,10 @@ class SejoliLP {
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/public.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/member.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/course.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/member.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/teacher.php';
 
 
 		/**
@@ -219,6 +220,8 @@ class SejoliLP {
 		$this->loader->add_action( 'plugins_loaded',						$course, 'remove_unneeded_hooks', 1);
 		$this->loader->add_action( 'learn-press/content-landing-summary',	$course, 'display_product_button', 25);
 		$this->loader->add_action( 'learn-press/course-buttons',			$course, 'display_purchase_button', 10);
+
+		$teacher = new SejoliLP\Front\Teacher( $this->get_plugin_name(), $this->get_version() );
 	}
 
 	/**
