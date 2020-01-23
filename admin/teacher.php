@@ -64,6 +64,5 @@ class Teacher {
 	public function modify_capability() {
 		$teacher = get_role( LP_TEACHER_ROLE );
 		$teacher->add_cap	( 'sejoli_user_can_access_admin' );
-		$teacher->remove_cap( 'edit_posts' );
 	}
 }
