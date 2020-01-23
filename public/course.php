@@ -96,5 +96,32 @@ class Course {
      */
     public function display_purchase_button() {
 
+		$course           = \LP_Global::course();
+		$user             = \LP_Global::user();
+		$button_available = false;
+
+		if ( $course->get_external_link() ) {
+			return;
+		}
+
+		if ( ! $course->is_publish() ) {
+			return;
+		}
+
+		if ( $user->has_enrolled_course( $course->get_id() ) ) {
+			return;
+		}
+
+		if ( ! $user->can_purchase_course( $course->get_id() ) ) {
+			return;
+		}
+
+		if ( $user->has_purchased_course( $course->get_id() ) && 'finished' !== $user->get_course_status( $course->get_id() ) ) {
+			return;
+		}
+
+		$products = sejolilp_get_products($course->get_id());
+
+		require SEJOLP_DIR . 'template/purchase-buttons.php';
     }
 }

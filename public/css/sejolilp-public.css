@@ -8,6 +8,16 @@
 .learn-press-breadcrumb {
   background-color: #ddd;
   padding: 12px 20px;
+  font-size: 16px;
+}
+
+.learn-press-search-course-form .search-course-input,
+.learn-press-search-course-form button {
+  padding: 6px 12px !important;
+  font-size: 14px;
+}
+.learn-press-search-course-form button {
+  border-radius: 0;
 }
 
 .learn-press-course-results-progress {
@@ -73,8 +83,9 @@
   }
 }
 .lp-archive-courses {
-  max-width: 90% !important;
-  width: 910px !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 1rem;
 }
 .lp-archive-courses ul.learn-press-courses {
   margin: 0;
@@ -84,6 +95,53 @@
 }
 .lp-archive-courses ul.learn-press-courses a.course-permalink {
   display: block;
+  text-decoration: none;
+}
+.lp-archive-courses ul.learn-press-courses h3.course-title {
+  font-size: 18px;
+}
+.lp-archive-courses .course-info {
+  display: none;
+}
+.lp-archive-courses .lp-course-buttons .sejoli-product-related h5.title {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0;
+  line-height: 32px;
+}
+.lp-archive-courses .lp-course-buttons .sejoli-product-related ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.lp-archive-courses .lp-course-buttons .sejoli-product-related ul li {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 8px;
+}
+.lp-archive-courses .lp-course-buttons .sejoli-product-related ul li a {
+  border: none;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  border-radius: 4px;
+  line-height: 2.5rem;
+  text-transform: uppercase;
+  background-color: #F5F5F5;
+  background-color: #00adff;
+  color: white;
+  text-decoration: none;
+  border-bottom: none;
+  padding: 0 8px;
+  font-size: 14px;
+  line-height: 32px;
+  font-weight: bold;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+.lp-archive-courses .lp-course-buttons .lp-button {
+  line-height: 32px;
+  height: auto;
+  font-size: 14px;
 }
 
 .sejoli-product-related ul {
@@ -130,6 +188,7 @@ body.course-item-popup .content-item-summary {
   border-radius: 4px;
   line-height: 2.5rem;
   text-transform: uppercase;
+  background-color: #F5F5F5;
   background-color: #00adff;
   color: white;
   font-size: 12px;
@@ -152,6 +211,7 @@ body.course-item-popup.wpadminbar #learn-press-content-item {
   border-radius: 4px;
   line-height: 2.5rem;
   text-transform: uppercase;
+  background-color: #F5F5F5;
   background-color: #00adff;
   color: white;
 }
@@ -280,6 +340,7 @@ body.course-item-popup.wpadminbar #learn-press-content-item {
   border-radius: 4px;
   line-height: 2.5rem;
   text-transform: uppercase;
+  background-color: #F5F5F5;
   background-color: #00adff;
   color: white;
 }

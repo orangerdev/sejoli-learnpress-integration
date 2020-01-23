@@ -1,5 +1,6 @@
+
 <div class="sejoli-product-related product-list">
-    <h3 class='title'><?php _e('Kelas ini tersedia pada produk :', 'sejoli'); ?></h3>
+    <h5 class='title'><?php _e('Kelas ini tersedia pada produk :', 'sejoli'); ?></h5>
     <ul>
     <?php
     foreach($products as $product_id) :
