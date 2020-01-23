@@ -96,15 +96,16 @@ class Front {
 	 */
 	public function redirect_for_regular_pages() {
 
-		// $member_home_url = sejoli_get_endpoint_url();
-		//
-		// if(
-		// 	is_archive(LP_COURSE_CPT) ||
-		// 	is_category('course_category')
-		// ) :
-		//
-		// 	wp_redirect($member_home_url);
-		// 	exit;
-		// endif;
+		// redirect from checkout page to course list
+		if(learn_press_is_checkout()) :
+			wp_redirect( get_post_type_archive_link(LP_COURSE_CPT) );
+			exit;
+		endif;
+
+		if(learn_press_is_profile()) :
+			wp_redirect( site_url('member-area/profile'));
+			exit;
+		endif;
+
 	}
 }
