@@ -118,6 +118,10 @@ class Order {
             $this->buyer_id = $order_data['user_id'];
             $courses        = $order_data['meta_data']['learnpress'];
 
+			if(!is_object(LP()->cart) || !method_exists(LP()->cart, 'add_to_cart') || false === LP()->cart)  :
+				LP()->cart = new \LP_Cart(); // Call the class directly
+			endif;
+
             foreach( (array) $courses as $course_id) :
                 LP()->cart->add_to_cart($course_id);
             endforeach;
@@ -134,7 +138,7 @@ class Order {
 		elseif(isset($order_data['meta_data']['learnpress_order'])) :
 
 			$learnpress_order_id = intval($order_data['meta_data']['learnpress_order']);
-			
+
 			if ( $learnpress_order = learn_press_get_order( $learnpress_order_id ) ) :
                 $learnpress_order->update_status('completed');
                 $learnpress_order->save();
