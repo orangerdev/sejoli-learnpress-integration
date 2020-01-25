@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Sejoli - LearnPress
  * Plugin URI:        https://sejoli.co.id
- * Description:       Integration sejoli with learnpress
+ * Description:       Integrates SEJOLI premium membership WordPress plugin with LearnPress ( an LMS WordPress plugin )
  * Version:           1.0.0
  * Author:            Ridwan Arifandi
  * Author URI:        https://ridwan-arifandi.com
