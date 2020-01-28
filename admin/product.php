@@ -70,6 +70,10 @@ class Product {
         $fields[]   = array(
             'title'     => __('LearnPress', 'sejolilp'),
             'fields'    => array(
+				Field::make( 'separator', 'sep_learnpress' , __('Integrasi LearnPress', 'sejoli'))
+					->set_classes('sejoli-with-help')
+					->set_help_text('<a href="' . sejolisa_get_admin_help('shipping') . '" class="thickbox sejoli-help">Tutorial <span class="dashicons dashicons-video-alt2"></span></a>'),
+
                 Field::make('association', 'learnpress_course', __('Course', 'sejolilp'))
                     ->set_types(array(
                         array(
@@ -93,7 +97,7 @@ class Product {
 	 * @return WP_Post
 	 */
     public function set_product_metadata(\WP_Post $product, int $product_id) {
-        
+
         $courses = carbon_get_post_meta($product_id, 'learnpress_course');
 
         if(is_array($courses) && 0 < count($courses)) :
