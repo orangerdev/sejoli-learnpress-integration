@@ -86,6 +86,7 @@ register_deactivation_hook( __FILE__, 'deactivate_sejolp' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
+require plugin_dir_path( __FILE__ ) . 'third-parties/autoload.php';
 require plugin_dir_path( __FILE__ ) . 'includes/class-sejolp.php';
 
 /**
@@ -103,4 +104,15 @@ function run_sejolp() {
 	$plugin->run();
 
 }
+
+require_once(SEJOLP_DIR . 'third-parties/yahnis-elsts/plugin-update-checker/plugin-update-checker.php');
+
+$update_checker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/orangerdev/sejoli-learnpress-integration',
+	__FILE__,
+	'sejoli-learnpress'
+);
+
+$update_checker->setBranch('master');
+
 run_sejolp();
