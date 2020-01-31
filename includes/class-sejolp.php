@@ -219,6 +219,7 @@ class SejoliLP {
 		$member 	= new SejoliLP\Front\Member( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_filter( 'sejoli/member-area/menu',			$member, 'add_course_menu', 999);
+		$this->loader->add_filter( 'sejoli/member-area/menu-url',		$member, 'modify_member_area_url',	1, 2);
 		$this->loader->add_filter( 'sejoli/member-area/backend/menu',	$member, 'add_course_menu_in_backend', 999);
 		$this->loader->add_filter( 'sejoli/template-file',				$member, 'set_template_file', 999, 2);
 

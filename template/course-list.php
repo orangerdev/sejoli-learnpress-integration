@@ -73,8 +73,7 @@ foreach( (array) $course_ids as $course_id ) :
                 </a>
             </div>
             <a href='<?php echo $course->get_permalink(); ?>' class="ui bottom attached button">
-                <i class="add icon"></i>
-                Add Friend
+                <?php _e('Lihat Kelas', 'sejoli'); ?>
             </a>
         </div>
     </div><?php

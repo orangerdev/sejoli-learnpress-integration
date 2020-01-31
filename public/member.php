@@ -87,6 +87,23 @@ class Member {
         return $menu;
     }
 
+	/**
+	 * Modify member area url
+	 * Hooked via filter sejoli/member-area/menu-url, priority 1
+	 * @since 	1.0.1
+	 * @param  string 	$menu_url   
+	 * @param  WP_Post 	$menu_object
+	 * @return string
+	 */
+	public function modify_member_area_url($menu_url, $menu_object) {
+
+		if('sejoli-learnpress-course-list' === $menu_object->object) :
+			return site_url('member-area/course-list');
+		endif;
+
+		return $menu_url;
+	}
+
     /**
      * Add course menu to menu backend area
      * Hooked via filter sejoli/member-area/backend/menu, priority 999
