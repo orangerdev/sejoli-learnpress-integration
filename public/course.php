@@ -124,4 +124,34 @@ class Course {
 
 		require SEJOLP_DIR . 'template/purchase-buttons.php';
     }
+
+	/**
+	 * Change block button to list product
+	 * Hooked via filter learn_press_content_item_protected_message, priority 999
+	 * @param  [type] $content [description]
+	 * @return [type]          [description]
+	 */
+	public function change_block_button($content) {
+
+		global $post;
+
+		ob_start();
+		$products = sejolilp_get_products($post->ID);
+		require SEJOLP_DIR . 'template/block-content.php';
+		$content = ob_get_contents();
+		ob_end_clean();
+
+		return $content;
+	}
+
+	public function set_template_for_block_part($located, $template) {
+
+		if('single-course/content-protected.php' === $template) :
+			$course   = \LP_Global::course();
+			$products = sejolilp_get_products($course->get_id());
+			$located  = SEJOLP_DIR . 'template/block-content.php';
+		endif;
+
+		return $located;
+	}
 }

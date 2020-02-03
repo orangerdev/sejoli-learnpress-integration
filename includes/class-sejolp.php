@@ -225,9 +225,11 @@ class SejoliLP {
 
 		$course = new SejoliLP\Front\Course( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'plugins_loaded',						$course, 'remove_unneeded_hooks', 1);
-		$this->loader->add_action( 'learn-press/content-landing-summary',	$course, 'display_product_button', 25);
-		$this->loader->add_action( 'learn-press/course-buttons',			$course, 'display_purchase_button', 10);
+		$this->loader->add_action( 'plugins_loaded',							 $course, 'remove_unneeded_hooks', 		 1);
+		$this->loader->add_action( 'learn-press/content-landing-summary',		 $course, 'display_product_button', 	 25);
+		$this->loader->add_action( 'learn-press/course-buttons',				 $course, 'display_purchase_button', 	 10);
+		$this->loader->add_filter( 'learn_press_get_template', 					 $course, 'set_template_for_block_part', 1, 2);
+		$this->loader->add_filter( 'learn_press_content_item_protected_message', $course, 'change_block_button',		 999);
 
 		$teacher = new SejoliLP\Front\Teacher( $this->get_plugin_name(), $this->get_version() );
 
