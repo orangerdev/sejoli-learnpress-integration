@@ -2,6 +2,7 @@
 /**
  * Get products that related to learnpress course
  * @since   1.0.0
+ * @since   1.0.3           Add conditional check to product post status
  * @param   integer         $check_course_id    (Optional) ID of course
  * @return  array|false     Will return false if there is no product for given course id or no related product
  */
@@ -17,8 +18,9 @@ function sejolilp_get_products($check_course_id = 0) {
 
         $product_id = (int) $row->post_id;
         $course_id  = (int) $row->meta_value;
+        $product    = get_post( $product_id );
 
-        if(!isset($data[$course_id])) :
+        if(!isset($data[$course_id]) && 'publish' === $product->post_status;) :
             $data[$course_id] = array();
         endif;
 
