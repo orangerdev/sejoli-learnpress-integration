@@ -20,7 +20,7 @@ function sejolilp_get_products($check_course_id = 0) {
         $course_id  = (int) $row->meta_value;
         $product    = get_post( $product_id );
 
-        if(!isset($data[$course_id]) && 'publish' === $product->post_status;) :
+        if(!isset($data[$course_id]) && 'publish' === $product->post_status) :
             $data[$course_id] = array();
         endif;
 
