@@ -122,6 +122,10 @@ class Order {
 				LP()->cart = new \LP_Cart(); // Call the class directly
 			endif;
 
+			LP()->cart->empty_cart(); // empty cart
+			
+			do_action('sejoli/log/write', 'learnpress-create-order', $courses);
+
             foreach( (array) $courses as $course_id) :
                 LP()->cart->add_to_cart($course_id);
             endforeach;

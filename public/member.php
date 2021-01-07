@@ -91,7 +91,7 @@ class Member {
 	 * Modify member area url
 	 * Hooked via filter sejoli/member-area/menu-url, priority 1
 	 * @since 	1.0.1
-	 * @param  string 	$menu_url   
+	 * @param  string 	$menu_url
 	 * @param  WP_Post 	$menu_object
 	 * @return string
 	 */
