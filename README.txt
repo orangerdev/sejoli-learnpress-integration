@@ -3,8 +3,8 @@ Contributors: (this should be a list of wordpress.org userid's)
 Donate link: https://ridwan-arifandi.com
 Tags: comments, spam
 Requires at least: 5.3
-Tested up to: 5.6.0
-Stable tag: 1.0.3
+Tested up to: 5.7.2
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ Coming soon
 Coming soon
 
 == Changelog ==
+
+= 1.0.4 =
+* Hide checkout form in single ecourse form
 
 = 1.0.2 =
 * Modify block content
