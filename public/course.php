@@ -144,12 +144,25 @@ class Course {
 		return $content;
 	}
 
+	/**
+	 * Modify basic learnpress template
+	 * @uses  		learn_press_get_template (action)
+	 * @priority	999
+	 * @param 		string $located  [description]
+	 * @param 		string $template [description]
+	 */
 	public function set_template_for_block_part($located, $template) {
 
 		if('single-course/content-protected.php' === $template) :
+
 			$course   = \LP_Global::course();
 			$products = sejolilp_get_products($course->get_id());
 			$located  = SEJOLP_DIR . 'template/block-content.php';
+
+		elseif( 'single-course/buttons/enroll.php' === $template ) :
+
+			$located  = SEJOLP_DIR . 'template/empty.php';
+
 		endif;
 
 		return $located;
