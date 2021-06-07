@@ -148,6 +148,8 @@ class Course {
 	 * Modify basic learnpress template
 	 * @uses  		learn_press_get_template (action)
 	 * @priority	999
+	 * @since 		1.0.0
+	 * @since 		1.0.5	Prevent display course price
 	 * @param 		string $located  [description]
 	 * @param 		string $template [description]
 	 */
@@ -159,7 +161,11 @@ class Course {
 			$products = sejolilp_get_products($course->get_id());
 			$located  = SEJOLP_DIR . 'template/block-content.php';
 
-		elseif( 'single-course/buttons/enroll.php' === $template ) :
+		elseif(
+			'single-course/buttons/enroll.php' === $template ||
+			'loop/course/price.php' === $template ||
+			'single-course/price.php' === $template
+		) :
 
 			$located  = SEJOLP_DIR . 'template/empty.php';
 
