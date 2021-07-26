@@ -357,3 +357,34 @@ body.course-item-popup.wpadminbar #learn-press-content-item {
 .content-item-summary .question-numbers li a {
   border: none;
 }
+
+body.lp_course-template-sejoli-member-page .course-summary .course-summary-sidebar {
+  position: relative;
+  display: none;
+}
+
+body.lp_course-template-sejoli-member-page .lp-archive-courses .course-summary .course-summary-content .course-detail-info .course-info-left {
+  width: 100%;
+}
+
+body.lp_course-template-sejoli-member-page .lp-archive-courses .course-summary .course-summary-content .course-detail-info {
+  padding: 40px 40px 10px 40px !important;
+}
+
+body.lp_course-template-sejoli-member-page #learn-press-course .course-meta span {
+  margin-right: 5px;
+}
+
+body.lp_course-template-sejoli-member-page .lp-archive-courses .course-summary .course-summary-content .lp-entry-content.lp-content-area .entry-content-left {
+  width: 100%;
+  padding-right: 0 !important;
+}
+
+body.lp_course-template-sejoli-member-page #learn-press-course-curriculum.course-curriculum ul.curriculum-sections .section-header {
+  padding: 10px 10px 26px 10px !important;
+}
+
+body.lp_course-template-sejoli-member-page #learn-press-course-curriculum.course-curriculum ul.curriculum-sections .section {
+  margin: 0;
+  padding: 0 !important;
+}

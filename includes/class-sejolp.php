@@ -215,8 +215,10 @@ class SejoliLP {
 		$this->loader->add_action( 'wp_enqueue_scripts', 	$public, 	'enqueue_styles' 	, 1000);
 		$this->loader->add_action( 'wp_enqueue_scripts', 	$public, 	'enqueue_scripts' 	, 1000);
 		$this->loader->add_action( 'template_redirect',		$public,	'redirect_for_regular_pages', 10);
+		$this->loader->add_filter( 'sejoli/enable',			$public, 	'enable_semantic', 1000);
+		$this->loader->add_filter( 'template_include',		$public, 	'view_member_template',	1000);
 
-		$member 	= new SejoliLP\Front\Member( $this->get_plugin_name(), $this->get_version() );
+		$member = new SejoliLP\Front\Member( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_filter( 'sejoli/member-area/menu',			$member, 'add_course_menu', 999);
 		$this->loader->add_filter( 'sejoli/member-area/menu-url',		$member, 'modify_member_area_url',	1, 2);

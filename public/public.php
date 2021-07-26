@@ -42,6 +42,13 @@ class Front {
 	private $version;
 
 	/**
+	 * Enable semantic theme
+	 * @since 	1.1.7
+	 * @var 	boolean
+	 */
+	protected $enable_semantic = true;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -109,5 +116,53 @@ class Front {
 			exit;
 		endif;
 
+	}
+
+	/**
+	 * Check if current page is using sejoli-member-page.php
+	 * Hooked via filter template_include, priority 10
+	 * @since 	1.1.7
+	 * @since 	1.3.0 	Change priority from 1 to 10
+	 * @param  	string	$template	Template file
+	 * @return 	string
+	 */
+	public function view_member_template($template) {
+
+		global $post, $wp_query;
+
+		// Return template if post is empty
+		if ( ! $post ) :
+			return $template;
+		endif;
+		
+		$get_page_template = get_page_template_slug();
+
+		// Return default template if we don't have a custom one defined
+		if(false !== $this->enable_semantic) :
+
+			error_log(print_r(get_page_template_slug(), true));
+			if($wp_query->query_vars['post_type'] == 'lp_course' && $get_page_template == 'sejoli-member-page.php') :
+				$template = plugin_dir_path( dirname( __FILE__ ) ) . 'template/single-course-template.php';
+			elseif($wp_query->query_vars['post_type'] == 'lp_course') :
+				return $template;
+			else:
+				return $template;
+			endif;
+
+			return $template;
+
+		endif;
+
+		return $template;
+	}
+
+	/**
+	 * Enable semantic
+	 * Hooked via filter sejoli/enable, priority 100
+	 * @since 	1.1.7
+	 * @return 	boolean
+	 */
+	public function enable_semantic($enable_semantic) {
+		return (true === $enable_semantic) ? true : $this->enable_semantic;
 	}
 }
