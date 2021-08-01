@@ -232,6 +232,7 @@ class SejoliLP {
 		$this->loader->add_action( 'learn-press/course-buttons',				 $course, 'display_purchase_button', 	 10);
 		$this->loader->add_filter( 'learn_press_get_template', 					 $course, 'set_template_for_block_part', 999, 2);
 		$this->loader->add_filter( 'learn_press_content_item_protected_message', $course, 'change_block_button',		 999);
+		$this->loader->add_filter( 'learn-press/user-course-status', 			 $course, 'check_course_status',		 99, 3);
 
 		$teacher = new SejoliLP\Front\Teacher( $this->get_plugin_name(), $this->get_version() );
 

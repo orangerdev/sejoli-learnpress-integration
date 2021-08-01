@@ -173,4 +173,22 @@ class Course {
 
 		return $located;
 	}
+
+	/**
+	 * Check if current user is really registered to the course, prevent any issue
+	 * @uses 	learn-press/user-course-status (filter), 999
+	 * @since 	1.0.6
+	 * @param   string 		$status
+	 * @param  	integer 	$course_id
+	 * @param  	integer		$the_id
+	 * @return 	string
+	 */
+	public function check_course_status( $status, $course_id, $the_id ) {
+
+		if(LP_COURSE_PURCHASED === $status) :
+			return LP_COURSE_ENROLLED;
+		endif;
+
+		return $status;
+	}
 }
