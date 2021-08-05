@@ -271,11 +271,11 @@ body.course-item-popup.wpadminbar #learn-press-content-item {
   font-size: 16px;
 }
 
-@media screen and(max-width: 768px) {
+@media screen and (max-width: 768px) {
   #popup-course #learn-press-content-item {
     padding: 1rem;
   }
-  body.course-item-popup #learn-press-course-curriculum {
+  body.lp_course-template.course-item-popup #tab-curriculum #learn-press-course-curriculum {
     width: 100% !important;
   }
 }
