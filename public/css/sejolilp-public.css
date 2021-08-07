@@ -70,6 +70,32 @@
   padding-right: 0.75rem;
 }
 
+@media screen and (max-width: 360px) {
+  .lp-content-area {
+    padding: 0 !important;
+  }
+
+  .lp-archive-courses .course-summary .course-summary-content .course-detail-info .course-info-left .course-meta .course-meta__pull-left {
+    display: block;
+  }
+
+  .meta-item.meta-item-instructor {
+    margin-bottom: 20px;
+  }
+
+  body.lp_course-template-sejoli-member-page .sejolisa-memberarea-content .segment .lp-archive-courses .course-summary .course-summary-content .course-detail-info {
+    padding: 40px 20px !important;
+  }
+
+  body.lp_course-template-default .lp-archive-courses .course-summary .course-summary-content .course-detail-info {
+    padding: 40px 20px !important;
+  }
+
+  body.lp_course-template-default .lp-archive-courses .course-summary .course-summary-content .course-detail-info {
+    margin-bottom: 0px !important;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .lp-content-area {
     padding: 0 !important;
@@ -98,6 +124,7 @@
     display: block;
   }
 }
+
 .lp-archive-courses {
   max-width: 100% !important;
   width: 100% !important;
@@ -275,7 +302,7 @@ body.course-item-popup.wpadminbar #learn-press-content-item {
   #popup-course #learn-press-content-item {
     padding: 1rem;
   }
-  body.lp_course-template.course-item-popup #tab-curriculum #learn-press-course-curriculum {
+  body.lp_course-template.course-item-popup #tab-curriculum #learn-press-course-curriculum, {
     width: 100% !important;
   }
 }
@@ -283,6 +310,13 @@ body.course-item-popup.wpadminbar #learn-press-content-item {
 @media screen and (max-width: 480px) {
   #popup-course #learn-press-content-item {
     padding: 1rem;
+  }
+
+  .meta-item.meta-item-lesson,
+  .meta-item.meta-item-quiz,
+  .meta-item.meta-item-student {
+    display: block !important;
+    width: 100%;
   }
 
   body.course-item-popup #learn-press-course-curriculum {
