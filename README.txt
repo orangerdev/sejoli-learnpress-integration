@@ -4,7 +4,7 @@ Donate link: https://ridwan-arifandi.com
 Tags: comments, spam
 Requires at least: 5.3
 Tested up to: 5.8.0
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ Coming soon
 Coming soon
 
 == Changelog ==
+
+= 1.0.7 =
+* Fix responsive issue
 
 = 1.0.6 =
 * Fix using Sejoli Member Page template in course view
