@@ -185,8 +185,8 @@ class Course {
 	 */
 	public function check_course_status( $status, $course_id, $the_id ) {
 
-		if(LP_COURSE_PURCHASED === $status) :
-			return LP_COURSE_ENROLLED;
+		if('LP_COURSE_PURCHASED' === $status) :
+			return 'LP_COURSE_PURCHASED';
 		endif;
 
 		return $status;
