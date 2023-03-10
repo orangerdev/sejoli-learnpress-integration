@@ -114,9 +114,9 @@ class Front {
 		endif;
 
 		if ( learn_press_is_profile() && is_object( $post ) ) :
-			if ( $post->post_content === '<!-- wp:shortcode -->[learn_press_profile]<!-- /wp:shortcode -->' ) :
+			if ( has_shortcode( $post->post_content, 'learn_press_profile' ) ) :
 				wp_redirect( site_url('member-area/profile'));
-			    exit;
+				exit;
 			endif;
 		endif;
 
