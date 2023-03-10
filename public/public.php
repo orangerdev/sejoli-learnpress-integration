@@ -105,15 +105,19 @@ class Front {
 	 */
 	public function redirect_for_regular_pages() {
 
+		global $post;
+
 		// redirect from checkout page to course list
 		if(learn_press_is_checkout()) :
 			wp_redirect( get_post_type_archive_link(LP_COURSE_CPT) );
 			exit;
 		endif;
 
-		if(learn_press_is_profile()) :
-			wp_redirect( site_url('member-area/profile'));
-			exit;
+		if ( learn_press_is_profile() && is_object( $post ) ) :
+			if ( has_shortcode( $post->post_content, 'learn_press_profile' ) ) :
+				wp_redirect( site_url('member-area/profile'));
+				exit;
+			endif;
 		endif;
 
 	}
