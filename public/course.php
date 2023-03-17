@@ -108,11 +108,8 @@ class Course {
 			return;
 		}
 
-		if ( $user->has_enrolled_course( $course->get_id() ) ) {
-			return;
-		}
 
-		if ( ! $user->can_purchase_course( $course->get_id() ) ) {
+		if ( $user->has_enrolled_course( $course->get_id() ) ) {
 			return;
 		}
 

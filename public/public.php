@@ -144,7 +144,6 @@ class Front {
 		// Return default template if we don't have a custom one defined
 		if(false !== $this->enable_semantic) :
 
-			error_log(print_r(get_page_template_slug(), true));
 			if($wp_query->query_vars['post_type'] == 'lp_course' && $get_page_template == 'sejoli-member-page.php') :
 				$template = plugin_dir_path( dirname( __FILE__ ) ) . 'template/single-course-template.php';
 			elseif($wp_query->query_vars['post_type'] == 'lp_course') :
