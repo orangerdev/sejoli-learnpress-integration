@@ -108,7 +108,6 @@ class Course {
 			return;
 		}
 
-
 		if ( $user->has_enrolled_course( $course->get_id() ) ) {
 			return;
 		}
