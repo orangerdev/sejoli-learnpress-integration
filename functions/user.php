@@ -7,20 +7,23 @@
  */
 function sejolilp_get_user_purchased_courses( $user_id = 0 ) {
 
-    $learnpress_version = get_option( 'learnpress_version' );
+    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    
+    $plugin_dir  = WP_PLUGIN_DIR . '/learnpress/learnpress.php';
+    $plugin_data = get_plugin_data( $plugin_dir );
 
     $courses = array();
     $profile = learn_press_get_profile( $user_id );
     $user    = learn_press_get_user( $user_id );
     $query   = $profile->query_courses( 'purchased' );
 
-    if( $learnpress_version <= '4.2.2.2' ) :
+    if( version_compare($plugin_data['Version'], '4.2.2.2', '<=') ) :
 
         if( $query['items'] ) :
 
             foreach( $query['items'] as $user_course ) :
 
-                if( $learnpress_version <= '4.1.2' ) :
+                if( version_compare($plugin_data['Version'], '4.1.2', '<=') ) :
 
                     $id           = $user_course->get_id();
                     $courses[$id] = array(
