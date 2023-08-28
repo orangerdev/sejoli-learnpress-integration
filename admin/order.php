@@ -110,44 +110,163 @@ class Order {
      */
     public function create_learnpress_order(array $order_data) {
 
-        if(
-            isset($order_data['meta_data']['learnpress']) &&
-            !isset($order_data['meta_data']['learnpress_order'])
-        ) :
+        require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    
+        $plugin_dir  = WP_PLUGIN_DIR . '/learnpress/learnpress.php';
+        $plugin_data = get_plugin_data( $plugin_dir );
 
-            $this->buyer_id = $order_data['user_id'];
-            $courses        = $order_data['meta_data']['learnpress'];
+        if( version_compare($plugin_data['Version'], '4.2.2.2', '<=') ) :
 
-			if(!is_object(LP()->cart) || !method_exists(LP()->cart, 'add_to_cart') || false === LP()->cart)  :
-				LP()->cart = new \LP_Cart(); // Call the class directly
-			endif;
+            if(
+                isset($order_data['meta_data']['learnpress']) &&
+                !isset($order_data['meta_data']['learnpress_order'])
+            ) :
 
-			LP()->cart->empty_cart(); // empty cart
-			
-			do_action('sejoli/log/write', 'learnpress-create-order', $courses);
+                $this->buyer_id = $order_data['user_id'];
+                $courses        = $order_data['meta_data']['learnpress'];
 
-            foreach( (array) $courses as $course_id) :
-                LP()->cart->add_to_cart($course_id);
-            endforeach;
+    			if(!is_object(LP()->cart) || !method_exists(LP()->cart, 'add_to_cart') || false === LP()->cart) :
+    				LP()->cart = new \LP_Cart(); // Call the class directly
+    			endif;
 
-            $order_data['meta_data']['learnpress_order'] = $learnpress_order_id = LP()->checkout()->create_order();
+    			LP()->cart->empty_cart(); // empty cart
+    			
+    			do_action('sejoli/log/write', 'learnpress-create-order', $courses);
 
-            sejolisa_update_order_meta_data($order_data['ID'], $order_data['meta_data']);
+                foreach( (array) $courses as $course_id) :
+                    LP()->cart->add_to_cart($course_id);
+                endforeach;
 
-            if ( $learnpress_order = learn_press_get_order( $learnpress_order_id ) ) :
-                $learnpress_order->update_status('completed');
-                $learnpress_order->save();
+                $order_data['meta_data']['learnpress_order'] = $learnpress_order_id = LP()->checkout()->create_order();
+
+                sejolisa_update_order_meta_data($order_data['ID'], $order_data['meta_data']);
+
+                if ( $learnpress_order = learn_press_get_order( $learnpress_order_id ) ) :
+                    $learnpress_order->update_status('completed');
+                    $learnpress_order->save();
+                endif;
+
+    		elseif(isset($order_data['meta_data']['learnpress_order'])) :
+
+    			$learnpress_order_id = intval($order_data['meta_data']['learnpress_order']);
+
+    			if ( $learnpress_order = learn_press_get_order( $learnpress_order_id ) ) :
+                    $learnpress_order->update_status('completed');
+                    $learnpress_order->save();
+                endif;
+
             endif;
 
-		elseif(isset($order_data['meta_data']['learnpress_order'])) :
+        else:
 
-			$learnpress_order_id = intval($order_data['meta_data']['learnpress_order']);
+            global $wpdb;
 
-			if ( $learnpress_order = learn_press_get_order( $learnpress_order_id ) ) :
-                $learnpress_order->update_status('completed');
-                $learnpress_order->save();
+            if(
+                isset($order_data['meta_data']['learnpress']) &&
+                !isset($order_data['meta_data']['learnpress_order'])
+            ) :
+
+                $this->buyer_id = $order_data['user_id'];
+                $courses        = $order_data['meta_data']['learnpress'];
+
+                if(!is_object(LP()->cart) || !method_exists(LP()->cart, 'add_to_cart') || false === LP()->cart) :
+                    LP()->cart = new \LP_Cart(); // Call the class directly
+                endif;
+                
+                do_action('sejoli/log/write', 'learnpress-create-order', $courses);
+
+                $order_data['meta_data']['learnpress_order'] = $learnpress_order_id = LP()->checkout()->create_order();
+
+                foreach( (array) $courses as $course_id ) :
+                    LP()->cart->add_to_cart($course_id);
+
+                    $cart     = LP()->cart;
+                    $checkout = LP()->checkout();
+
+                    if ( ! learn_press_enable_cart() ) :
+                        $cart->empty_cart();
+                    endif;
+
+                    $item = array(
+                        'item_id'         => absint( $course_id ),
+                        'order_item_name' => get_the_title( $course_id ),
+                    );
+                    
+                    $item_type = get_post_type( $item['item_id'] );
+                    
+                    $item = wp_parse_args(
+                        $item,
+                        array(
+                            'item_id'         => 0,
+                            'item_type'       => '',
+                            'order_item_name' => '',
+                            'quantity'        => 1,
+                            'subtotal'        => 0,
+                            'total'           => 0,
+                            'meta'            => array(),
+                        )
+                    );
+
+                    switch ( $item_type ) {
+                        case LP_COURSE_CPT:
+                            $course                     = learn_press_get_course( $item['item_id'] );
+                            $item['subtotal']           = apply_filters( 'learnpress/order/item/subtotal', $course->get_price() * $item['quantity'], $course, $item );
+                            $item['total']              = apply_filters( 'learnpress/order/item/total', $course->get_price() * $item['quantity'], $course, $item );
+                            $item['order_item_name']    = apply_filters( 'learnpress/order/item/title', $course->get_title(), $course, $item );
+                            $item['meta']['_course_id'] = $item['item_id'];
+                            break;
+                        default:
+                            $item = apply_filters( 'learnpress/order/add-item/item_type_' . $item_type, $item );
+                            break;
+                    }
+                    $wpdb->insert(
+                        $wpdb->learnpress_order_items,
+                        array(
+                            'order_item_name' => get_the_title( $course_id ),
+                            'order_id'        => $learnpress_order_id,
+                            'item_id'         => absint( $course_id ),
+                            'item_type'       => 'lp_course',
+                        ),
+                        array(
+                            '%s',
+                            '%d',
+                            '%d',
+                            '%s',
+                        )
+                    );
+                    $order_item_id = absint( $wpdb->insert_id );
+
+                    // Add learnpress_order_itemmeta
+                    $item['meta']['_quantity'] = $item['quantity'];
+                    $item['meta']['_subtotal'] = $item['subtotal'] ?? 0;
+                    $item['meta']['_total']    = $item['total'] ?? 0;
+
+                    if ( is_array( $item['meta'] ) ) :
+                        foreach ( $item['meta'] as $k => $v ) :
+                            learn_press_add_order_item_meta( $order_item_id, $k, $v );
+                        endforeach;
+                    endif;
+                endforeach;
+
+                sejolisa_update_order_meta_data($order_data['ID'], $order_data['meta_data']);
+
+                if ( $learnpress_order = learn_press_get_order( $learnpress_order_id ) ) :
+                    $learnpress_order->update_status('completed');
+                    $learnpress_order->save();
+                endif;
+
+            elseif(isset($order_data['meta_data']['learnpress_order'])) :
+
+                $learnpress_order_id = intval($order_data['meta_data']['learnpress_order']);
+
+                if ( $learnpress_order = learn_press_get_order( $learnpress_order_id ) ) :
+                    $learnpress_order->update_status('completed');
+                    $learnpress_order->save();
+                endif;
             endif;
+
         endif;
+        
     }
 
     /**
