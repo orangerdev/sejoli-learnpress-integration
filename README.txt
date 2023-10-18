@@ -33,6 +33,9 @@ Coming soon
 
 == Changelog ==
 
+= 1.1.1
+* Fix bug course list & course not enroll after purchased with sejoli
+
 = 1.1.0 =
 * Fix problem with new learnpress version
 
